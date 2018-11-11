@@ -7,14 +7,16 @@ def mipmap(filename):
         lines = []
         with open(filename) as sourcef:
             for line in sourcef:
-                line = line.strip()
+                line = line.strip().lower()
                 if not line:
                     continue
 
                 if re.search(r"^\d+", line):
                     continue
+                
 
                 line, _ = re.subn(r"<.*?>", " ", line)
+
                 lines.append(line)
         targetf.write("".join(lines))
 
